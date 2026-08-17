@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
+set -uo pipefail
+
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "${SCRIPT_DIR}" || exit 1
+
 update_theme() {
 	local -r REPO_URL='https://github.com/igorfmoraes/Mignon-icon-theme.git'
-	local -r SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 	if ! command -v git >/dev/null 2>&1; then
 		return
@@ -43,6 +47,23 @@ install_theme() {
 	local -r THEME_NAME="Mignon-pastel"
 	local -r THEME_DIR="${DEST_DIR}/${THEME_NAME}"
 
+	local -ra REQUIRED_PATHS=(
+		"src/index.theme"
+		"src/scalable/apps"
+		"src/scalable/devices"
+		"src/scalable/mimetypes"
+		"src/scalable/places"
+		"links/scalable"
+	)
+	local path
+	for path in "${REQUIRED_PATHS[@]}"; do
+		if [ ! -e "${path}" ]; then
+			echo "Missing expected path: ${path}" >&2
+			echo "Run this script from within the Mignon-icon-theme repository." >&2
+			exit 1
+		fi
+	done
+
 	if [ -d "${THEME_DIR}" ]; then
 		rm -r "${THEME_DIR}"
 	fi
@@ -53,7 +74,6 @@ install_theme() {
 
 	install -m644 "src/index.theme" "${THEME_DIR}"
 
-	# Update the name in index.theme
 	sed -i "s/%NAME%/${THEME_NAME//-/ }/g" "${THEME_DIR}/index.theme"
 
 	mkdir -p "${THEME_DIR}/scalable"
@@ -68,7 +88,11 @@ install_theme() {
 
 	ln -sr "${THEME_DIR}/scalable"                                                 "${THEME_DIR}/scalable@2x"
 
-	gtk-update-icon-cache "${THEME_DIR}"
+	if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+		gtk-update-icon-cache "${THEME_DIR}"
+	else
+		echo "gtk-update-icon-cache not found; skipping icon cache update." >&2
+	fi
 }
 
 update_theme
