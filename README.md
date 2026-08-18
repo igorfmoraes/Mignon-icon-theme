@@ -1,36 +1,49 @@
 # Mignon-Pastel Icon Theme
 
-Flat, pastel-colored icon theme that will add a lively touch to your Linux workspace. I created it because finding the perfect pastel icon theme for my computer was a struggle, so here it is to fill this void.
+Flat, pastel-colored icon theme for your Linux workspace.
 
 ## Installation
-1. **Clone this repository** with the command:
+To enable updates via the installation script, the theme must be cloned via git. Downloading the repository as a compressed archive disables the script's update functionality.
+
+1. **Clone the repository**:
 
 `git clone https://github.com/igorfmoraes/Mignon-icon-theme.git`
 
-_You can also download the theme as a compressed file, but the `install.sh` script won't automatically perform updates since it's not in a git repository_
+2. **Navigate to the cloned directory:**
 
-2. **Open a terminal in the `Mignon-icon-theme` directory.**
+`cd Mignon-icon-theme`
 
-3. **Run the command:** `./install.sh` to install or update - That's it! Your icons will be available.
+3. **Execute the installation script**
 
-By default, _only the base theme is installed_. Use the **install options** `-l` to also install the version with no light backgrounds or `-d` to install the one with no dark backgrounds, `-a` installs all.
+`./install.sh`
+
+**Installation Options**
+Executing `./install.sh` without arguments installs only the base theme. Add the following flags to also install specific variants:
+
+`-l`: Installs the Light version (excludes dark backgrounds).
+
+`-d`: Installs the Dark version (excludes light backgrounds).
+
+`-a`: Installs all theme versions. 
 
 ## Preview
-**Default Theme**: Has a mix of white and black bases for the icons.
+**Base Theme**: The default version uses both white and dark bases for the icons.
 ![Mignon](preview.png)
 
-**Light Version**: Avoid conflics with light themed DEs, all icons are either colored or black.
+**Light Version**: For light-themed desktop environments. Icon backgrounds are restricted to colors or dark gray to maintain contrast.
 ![Mignon Light](preview-light.png)
 
-**Dark Version**: Avoid conflics with dark themed DEs, all icons are either colored or white.
+**Dark Version**: For dark-themed desktop environments. Icon backgrounds are restricted to colors or white to maintain contrast.
 ![Mignon Dark](preview-dark.png)
 
 ## A Little More About Mignon Icons
 
-I created it based on the [Tela-circle](https://github.com/vinceliuice/Tela-circle-icon-theme) icon theme by [vinceliuice](https://github.com/vinceliuice). Vince is a great designer, his themes are gorgeous, and I wouldn't even be able to do the installation script and icon linkage if not by looking at his work.
+The structural foundation of Mignon-Pastel is based on the [Tela-circle](https://github.com/vinceliuice/Tela-circle-icon-theme) icon theme by [vinceliuice](https://github.com/vinceliuice). The installation scripts and directory linkage logic are derived directly from that repository. Vince is a great designer and I love his themes.
+
+I created it because finding the perfect pastel icon theme for my computer was a struggle, so here it is to fill this void.
 
 ## Contributing
 
-I'd love to see fellow customization/FOSS design enthusiasts! Feel free to contribute to the Mignon-Pastel by creating icons for new applications or suggesting improvements. Thanks to everyone who sees, uses and/or create issues in this project!
+I invite everyone to contribute by creating icons or sending suggestions/feedback for new application icons or structural modifications. A Figma file is included in the repository, providing the color palette, icon grid, and existing variants to standardize new additions.
 
-The Figma file with all the icons, palette, icon grid, and variants is available here as well. 
+Thanks to everyone who sees, uses and/or create issues in this project!
