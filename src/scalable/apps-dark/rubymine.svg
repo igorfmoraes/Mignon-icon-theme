@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_358_2096)">
+<g opacity="0.16" filter="url(#filter0_f_358_2096)">
+<rect x="4" y="5" width="56" height="56" rx="16" fill="#666569"/>
+</g>
+<rect x="4" y="4" width="56" height="56" rx="16" fill="#F86974"/>
+<rect x="14" y="14" width="36" height="36" rx="6" fill="#434345"/>
+<path d="M31.998 19.8236H34.4361L38.0852 25.9108L41.7384 19.8236H44.1725V33.217H41.7423V24.6957L38.0852 30.7829L34.4361 24.6957V33.217H31.998M24.6957 19.8275C27.1298 19.8275 29.5639 21.7207 29.5639 24.0882C29.5639 25.9108 28.4194 27.0201 26.879 27.8902L29.5639 33.217H27.1298L24.6957 28.3488H22.2616V33.217H19.8236V19.8236L24.6957 19.8275ZM24.6957 25.9147C26.5928 25.9147 27.1298 25.0446 27.1651 24.0882C27.1298 23.2376 26.6242 22.2616 24.6957 22.2616H22.2616V25.9108L24.6957 25.9147ZM18.6085 41.7384H30.7829V44.1725H18.6085V41.7384Z" fill="#FFFAFA"/>
+</g>
+<defs>
+<filter id="filter0_f_358_2096" x="0" y="1" width="64" height="64" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_358_2096"/>
+</filter>
+<clipPath id="clip0_358_2096">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>
