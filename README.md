@@ -13,16 +13,24 @@ _You can also download the theme as a compressed file, but the `install.sh` scri
 
 3. **Run the command:** `./install.sh` to install or update - That's it! Your icons will be available.
 
+By default, _only the base theme is installed_. Use the **install options** `-l` to also install the version with no light backgrounds or `-d` to install the one with no dark backgrounds, `-a` installs all.
+
 ## Preview
+**Default Theme**: Has a mix of white and black bases for the icons.
 ![Mignon](preview.png)
+
+**Light Version**: Avoid conflics with light themed DEs, all icons are either colored or black.
+![Mignon Light](preview-light.png)
+
+**Dark Version**: Avoid conflics with dark themed DEs, all icons are either colored or white.
+![Mignon Dark](preview-dark.png)
 
 ## A Little More About Mignon Icons
 
 I created it based on the [Tela-circle](https://github.com/vinceliuice/Tela-circle-icon-theme) icon theme by [vinceliuice](https://github.com/vinceliuice). Vince is a great designer, his themes are gorgeous, and I wouldn't even be able to do the installation script and icon linkage if not by looking at his work.
 
-The theme has a very restricted palette, consisting of 6 main colors, 3 neutral colors, and 9 secondary colors.
-![Palette](palette.png)
-
 ## Contributing
 
 I'd love to see fellow customization/FOSS design enthusiasts! Feel free to contribute to the Mignon-Pastel by creating icons for new applications or suggesting improvements. Thanks to everyone who sees, uses and/or create issues in this project!
+
+The Figma file with all the icons, palette, icon grid, and variants is available here as well. 
