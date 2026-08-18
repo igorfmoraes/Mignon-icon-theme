@@ -40,16 +40,23 @@ update_theme() {
 	fi
 }
 
+
 install_theme() {
+	local -r variant_suffix="${1:-}"
+	local -r apps_src="${2:-src/scalable/apps}"
+
 	local -r DEST_DIR="${HOME}/.local/share/icons"
 	local -r theme_color='#99C0ED'
 
-	local -r THEME_NAME="Mignon-pastel"
+	local THEME_NAME="Mignon-pastel"
+	if [ -n "${variant_suffix}" ]; then
+		THEME_NAME="${THEME_NAME}-${variant_suffix}"
+	fi
 	local -r THEME_DIR="${DEST_DIR}/${THEME_NAME}"
 
 	local -ra REQUIRED_PATHS=(
 		"src/index.theme"
-		"src/scalable/apps"
+		"${apps_src}"
 		"src/scalable/devices"
 		"src/scalable/mimetypes"
 		"src/scalable/places"
@@ -77,7 +84,9 @@ install_theme() {
 	sed -i "s/%NAME%/${THEME_NAME//-/ }/g" "${THEME_DIR}/index.theme"
 
 	mkdir -p "${THEME_DIR}/scalable"
-	cp -r src/scalable/{apps,devices,mimetypes} "${THEME_DIR}/scalable"
+	cp -r "${apps_src}" "${THEME_DIR}/scalable/apps"
+	cp -r src/scalable/devices "${THEME_DIR}/scalable"
+	cp -r src/scalable/mimetypes "${THEME_DIR}/scalable"
 	cp -r src/scalable/places "${THEME_DIR}/scalable/places"
 
 	sed -i "s/#5294e2/${theme_color}/g" "${THEME_DIR}/scalable/apps/"*.svg "${THEME_DIR}/scalable/places/"default-*.svg
@@ -95,5 +104,40 @@ install_theme() {
 	fi
 }
 
+print_usage() {
+	cat <<-EOF
+	Usage: ${0##*/} [OPTIONS]
+
+	Installs the Mignon-pastel icon theme to ${HOME}/.local/share/icons.
+	With no options, only the base theme (Mignon-pastel) is installed.
+
+	  -l, --light   Also install the Mignon-pastel-light variant
+	  -d, --dark    Also install the Mignon-pastel-dark variant
+	  -a, --all     Shortcut for --light --dark
+	  -h, --help    Show this help and exit
+	EOF
+}
+
+install_light=0
+install_dark=0
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-l|--light) install_light=1 ;;
+		-d|--dark)  install_dark=1 ;;
+		-a|--all)   install_light=1; install_dark=1 ;;
+		-h|--help)  print_usage; exit 0 ;;
+		*)
+			echo "Unknown option: $1" >&2
+			print_usage >&2
+			exit 1
+			;;
+	esac
+	shift
+done
+
 update_theme
-install_theme
+
+install_theme "" "src/scalable/apps"
+[ "${install_light}" -eq 1 ] && install_theme "light" "src/scalable/apps-light"
+[ "${install_dark}" -eq 1 ]  && install_theme "dark"  "src/scalable/apps-dark"
