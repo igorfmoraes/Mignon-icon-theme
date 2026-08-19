@@ -22,7 +22,7 @@ Flat, pastel-colored icon theme for your Linux workspace (GNOME, Cinnamon, KDE, 
 mkdir -p %{buildroot}%{_datadir}/icons/%{name}
 
 cp -a links src %{buildroot}%{_datadir}/icons/%{name}/
-cp -a index.theme %{buildroot}%{_datadir}/icons/%{name}/
+cp -a src/index.theme %{buildroot}%{_datadir}/icons/%{name}/
 
 %files
 %license LICENSE
