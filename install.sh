@@ -40,6 +40,32 @@ update_theme() {
 	fi
 }
 
+detect_de() {
+	local de="${XDG_CURRENT_DESKTOP:-}"
+	if [ -z "${de}" ]; then
+		de="${DESKTOP_SESSION:-}"
+	fi
+	echo "${de,,}"
+}
+
+build_inherits() {
+	local -r de="$(detect_de)"
+
+	case "${de}" in
+		*plasma*|*kde*)
+			echo "breeze,breeze-dark,Adwaita,Yaru,Cosmic,Pop,Mint-Y-Blue,hicolor"
+			;;
+		*cinnamon*)
+			echo "Mint-Y-Blue,Adwaita,Yaru,Cosmic,Pop,breeze,breeze-dark,hicolor"
+			;;
+		*cosmic*)
+			echo "Cosmic,Pop,Adwaita,Yaru,Mint-Y-Blue,breeze,breeze-dark,hicolor"
+			;;
+		*)
+			echo "Adwaita,Yaru,Cosmic,Pop,Mint-Y-Blue,breeze,breeze-dark,hicolor"
+			;;
+	esac
+}
 
 install_theme() {
 	local -r variant_suffix="${1:-}"
@@ -82,6 +108,7 @@ install_theme() {
 	install -m644 "src/index.theme" "${THEME_DIR}"
 
 	sed -i "s/%NAME%/${THEME_NAME//-/ }/g" "${THEME_DIR}/index.theme"
+	sed -i "s/%INHERITS%/$(build_inherits)/g" "${THEME_DIR}/index.theme" 
 
 	mkdir -p "${THEME_DIR}/scalable"
 	cp -r "${apps_src}" "${THEME_DIR}/scalable/apps"
